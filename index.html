@@ -1,0 +1,75 @@
+<html><title>Сайт маме</title>
+<style>
+html {
+}
+body {
+    margin: 0;
+}
+
+.card {
+  background-color: #eee;
+  width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.buttons {
+    display: flex;
+}
+
+.button-left,.button-right,.button-play {
+    width: 40px;
+    background-color: blue;
+    margin-right: 10px;
+    text-align: center;
+}
+</style>
+
+<script>
+let sounds = ['1.mp3','2.mp3','1.mp3']
+let images = ['cat.jpg','2.jpg','3.png'];
+let texts = ['Кот 1', "Кот 2", `Кот 3`];
+let index = 0;
+
+function play() {
+  var audio = new Audio(sounds[index]);
+  audio.play();
+}
+
+// при нажатии на "вправо"
+function right() {
+    index = index + 1
+    if (index == images.length) {
+        index = 0
+    } 
+    let img = document.querySelector("#img")
+    img.src = images[index]
+    let textBlock = document.querySelector("#text")
+    textBlock.innerHTML = texts[index]
+}
+
+// при нажатии на "влево"
+function left() {
+    index = index - 1
+    if (index == -1) {
+        index = images.length - 1
+    } 
+    let img = document.querySelector("#img")
+    img.src = images[index]
+    let textBlock = document.querySelector("#text")
+    textBlock.innerHTML = texts[index]
+}
+
+</script>
+
+<div class="card">
+    <div>
+        <img id="img" src="cat.jpg" height="200">
+    </div>
+    <div class="buttons">
+        <div class="button-left" onclick="left()"><</div>
+        <div class="button-play" onclick="play()">🎵</div>
+        <div class="button-right" onclick="right()">></div>
+    </div>
+    <div id="text">Кот 1</div>
+</div>
